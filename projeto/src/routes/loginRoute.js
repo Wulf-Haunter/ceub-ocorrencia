@@ -6,11 +6,11 @@ const path = require('path');
 //const WhatsAppSender = require('../util/whatsappClass');
 const emailSendGrid = require('../util/email_SendGrid');
 const { conectarBanco, querySoredProcedure } = require('../midleware/database_middleware');
-
+//const { autorizacaoMiddlewareAdminFuncionario } = require('../midleware/authMiddleware');
 
 /** 
  * Endpoint para lidar com o login
- * Toda roa criada e que exige que antes o usuário esteja logado, deve se chamada com a fun callback autenticacaoMiddleware em sua assinatura
+ * Toda rota criada e que exige que antes o usuário esteja logado, deve se chamada com a fun callback autenticacaoMiddleware em sua assinatura
  * Dentro de autenticacaoMiddleware é verificado se existe a sessão do usuário logado e caso contrário redireciona para esta rota aqui
 */
 router.get('/loginInit', async (req, res) => {
@@ -125,6 +125,10 @@ router.post('/loginRecuperaSenha', conectarBanco, async (req, res) => {
         res.status(500).json({ message: 'Erro interno do servidor (usuarioRoute)' });
     } 
 });
+//TO-DO: Criar Route diferenciando ADMIN e FUNCIONARIO do Aluno
 
+/*router.get('/faltandoRoute', autenticacaoMiddleware, autorizacaoMiddlewareAdminFuncionario, (req, res) => {
+    res.send('Esta é uma rota protegida.');
+});*/
 
 module.exports = router;

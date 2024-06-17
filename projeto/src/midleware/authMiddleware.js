@@ -26,4 +26,12 @@ function autenticacaoMiddleware(req, res, next) {
     }
 }
 
+/*function autorizacaoMiddlewareAdminFuncionario(req, res, next) {
+    if (req.session && req.session.usuario && (req.session.usuario.tipo === 'admin' || req.session.usuario.tipo === 'funcionario')) {
+        next();
+    } else {
+        res.status(403).send('Acesso negado.');
+    }
+}*/
+
 module.exports = autenticacaoMiddleware;
