@@ -125,10 +125,5 @@ router.post('/loginRecuperaSenha', conectarBanco, async (req, res) => {
         res.status(500).json({ message: 'Erro interno do servidor (usuarioRoute)' });
     } 
 });
-//TO-DO: Criar Route diferenciando ADMIN e FUNCIONARIO do Aluno
-
-/*router.get('/faltandoRoute', autenticacaoMiddleware, autorizacaoMiddlewareAdminFuncionario, (req, res) => {
-    res.send('Esta é uma rota protegida.');
-});*/
 
 module.exports = router;
