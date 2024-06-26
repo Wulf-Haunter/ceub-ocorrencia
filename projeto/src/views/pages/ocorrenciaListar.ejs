@@ -2,7 +2,7 @@
     <h2><%- tituloCabecalho %></h2>
 </div>
 <style>
-    #estadoOcorrencia {
+    #ddlOcorrenciaSituacao {
         display: none;
     }
     #adminAtualizarButton {
@@ -132,21 +132,23 @@
                                         <td><%= ocorrencia.deOcorrencia %></td>
                                         <td><%= ocorrencia.nmPessoa %></td>
                                         <td><%= formataData(ocorrencia.dtOcorrencia) %></td>
-                                        <td><label id="estadoLabel" for="estadoOcorrencia">Criada</label>
-                                            <select id="estadoOcorrencia">
-                                                <option value="Criada">Criada</option>
-                                                <option value="Indefirida">Indefirida</option>
-                                                <option value="Em Andamento">Em Andamento</option>
-                                                <option value="Finalizada">Finalizada</option>
-                                            </select>                                 
-                                        </td>
+                                        <td><%= ocorrencia.deOcorrenciaSituacao %>
+
+                                            <%# falta mudar as options para implementar automaticamente do bando de dados do select!%>
+
+                                            <select id="ddlOcorrenciaSituacao" stype="border-color: red;" name="ddlOcorrenciaSituacao" class="form-select form-select-lg" aria-label="Situacao Ocorrencia" required="">
+                                                <option value="0">Selecione</option>
+                                                <option value="4">Em Atendimento</option>
+                                                <option value="5">Finalizada</option>
+                                                <option value="1">Criada</option>
+                                                <option value="3">Indefirido</option>
+                                                <option value="2">Enviada para o Responsável</option>
+                                            </select>
                                         <td> <button id="adminEditarButton" style="background: none; border: none; cursor: pointer;">
                                             <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                         </button>
                                         &nbsp;&nbsp;
-                                        <button id="adminAtualizarButton" style="background: none; border: none; cursor: pointer;">
-                                            Atualizar
-                                        </button>
+                                        <button id="adminAtualizarButton" type="submit" class="btn card-header-ocorrencia hover:bg-fuchsia-700">Salvar</button>
                                     </tr>
                             <%
                                 }
@@ -163,9 +165,8 @@
             </div>
             <script>
                 document.getElementById('adminEditarButton').addEventListener('click', function() {
-                var selectElement = document.getElementById('estadoOcorrencia');
+                var selectElement = document.getElementById('ddlOcorrenciaSituacao');
                 var atualizarElement = document.getElementById('adminAtualizarButton');
-                //var editarElement = document.getElementById('adminEditarButton');
                 if (selectElement.style.display === 'none' && atualizarElement.style.display === 'none') {
                     selectElement.style.display = 'block';
                     atualizarElement.style.display = 'block';
@@ -176,9 +177,7 @@
                 //editarElement.style.display = 'none';
                 });
                 document.getElementById('adminAtualizarButton').addEventListener('click', function() {
-                var selectElement = document.getElementById('estadoOcorrencia');
-                var labelElement = document.getElementById('estadoLabel');
-                labelElement.textContent = selectElement.value;
+                var selectElement = document.getElementById('');
                 selectElement.style.display = 'none';
                 this.style.display = 'none';
                 });

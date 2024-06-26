@@ -1240,3 +1240,84 @@ select * from  OCOTB.Ocorrencia
 		
 	END
 GO
+
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Estados Ocorrências <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+-- =============================================
+-- Author:      Alejandro
+-- Create date: 26-06-2024
+-- Description: SP get situação da ocorrência
+-- =============================================
+DROP PROCEDURE IF EXISTS OCOTB.SP_getOcorrenciaSituacao
+	GO
+CREATE PROCEDURE [OCOTB].[SP_getOcorrenciaSituacao] 
+    @idOcorrencia int
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Seleciona a situação da ocorrência
+    SELECT idOcorrencia, deOcorrencia
+    FROM OCOTB.Ocorrencia
+    WHERE idOcorrencia = @idOcorrencia;
+END
+GO
+
+-- =============================================
+-- Author:      Alejandro
+-- Create date: 26-06-2024
+-- Description: SP para atualizar a situação da ocorrência
+-- =============================================
+DROP PROCEDURE IF EXISTS OCOTB.SP_setOcorrenciaSituacao
+	GO
+CREATE PROCEDURE [OCOTB].[SP_setOcorrenciaSituacao] 
+    @idOcorrencia int, 
+    @novoEstado varchar(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Atualiza a situação da Ocorrência
+    UPDATE OCOTB.Ocorrencia
+    SET  deOcorrencia= @novoEstado
+    WHERE idOcorrencia = @idOcorrencia;
+
+    -- retorna a linha atualizada para confirmar a mudança
+    SELECT idOcorrencia, deOcorrencia
+    FROM OCOTB.Ocorrencia
+    WHERE idOcorrencia = @idOcorrencia;
+END
+
+-- =============================================
+-- Author:      Alejandro
+-- Create date: 26-06-2024
+-- Description: SP para deletar uma ocorrência
+-- =============================================
+DROP PROCEDURE IF EXISTS OCOTB.SP_deleteOcorrencia
+	GO 
+CREATE PROCEDURE OCOTB.SP_deleteOcorrencia 
+    @idOcorrencia int
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Verificar se a ocorrência existe
+    IF EXISTS (SELECT 1 FROM OCOTB.Ocorrencia WHERE idOcorrencia = @idOcorrencia)
+    BEGIN
+        -- Deletar a ocorrência
+        DELETE FROM OCOTB.Ocorrencia
+        WHERE idOcorrencia = @idOcorrencia;
+
+        -- Retorno para confirmar a exclusão da ocorrência
+        SELECT 'Ocorrência deletada com sucesso' AS Mensagem;
+    END
+    ELSE
+    BEGIN
+        -- Retornar uma mensagem de erro se a ocorrência não for encontrada
+        SELECT 'Erro: Ocorrência não encontrada' AS Mensagem;
+    END
+END
+GO
+
+
+

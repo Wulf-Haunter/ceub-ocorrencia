@@ -339,7 +339,7 @@
 
 	USE OCODB;
 	GO
-	ALTER AUTHORIZATION ON DATABASE::OCODB TO isabelle;
+	ALTER AUTHORIZATION ON DATABASE::OCODB TO alejandro;
 	GO
 
 	select * from sys.dm_server_registry
