@@ -338,7 +338,29 @@
 	GO
 
 
-	
+	-- Soltar a chave estrangeira existente
+ALTER TABLE OCOTB.OcorrenciaResponsavel
+DROP CONSTRAINT FK_OcorrenciaResponsavel_Ocorrencia;
+
+-- Recriar a chave estrangeira com ON DELETE CASCADE
+ALTER TABLE OCOTB.OcorrenciaResponsavel
+ADD CONSTRAINT FK_OcorrenciaResponsavel_Ocorrencia
+FOREIGN KEY (idOcorrencia)
+REFERENCES OCOTB.Ocorrencia(idOcorrencia)
+ON DELETE CASCADE;
+
+
+-- Soltar a chave estrangeira existente
+ALTER TABLE OCOTB.OcorrenciaHistoricoSituacao
+DROP CONSTRAINT FK_OcorrenciaHistoricoSituacao_Ocorrencia;
+
+-- Recriar a chave estrangeira com ON DELETE CASCADE
+ALTER TABLE OCOTB.OcorrenciaHistoricoSituacao
+ADD CONSTRAINT FK_OcorrenciaHistoricoSituacao_Ocorrencia
+FOREIGN KEY (idOcorrencia)
+REFERENCES OCOTB.Ocorrencia(idOcorrencia)
+ON DELETE CASCADE;
+
 
 	USE OCODB;
 	GO
