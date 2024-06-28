@@ -87,6 +87,11 @@
                                                                                 <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                                                             </a>
                                                                         </td>
+                                                                        <td>
+                                                                            <a class="nav-link" href="#" onclick="deletarOcorrencia(<%= ocorrencia.idOcorrencia %>);">
+                                                                                <i class="fa-solid fa-trash fa-lg"></i>
+                                                                            </a>
+                                                                        </td>
                                                                     </tr>
                                                         <%
                                                                 }
@@ -175,7 +180,7 @@
                                                                     <td id="tdOcorrenciaResposabilidade_situacao_<%= ocorrencia.idOcorrencia %>"><%= ocorrencia.deOcorrenciaSituacao %></td>
                                                                     <td> 
                                                                         
-                                                                        <a class="nav-link" href="#"  onclick="emitirParecerShowModal(<%= ocorrencia.idOcorrencia %>)">
+                                                                        <a class="nav-link" href="#"  onclick="emitirParecerShowModal(<%=ocorrencia.idOcorrencia%>)">
                                                                             <i class="fa-solid fa-user-pen fa-lg"></i>
                                                                         </a>
                                                                     </td>
@@ -261,3 +266,4 @@
         </div>
 
 <script src="/javascript/ocorrencia_listar_javascript.js"></script>
+

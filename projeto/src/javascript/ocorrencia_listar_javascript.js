@@ -141,4 +141,30 @@ console.log(formObject);
     emitirParecerCloseModal ();
 }
 
+function deletarOcorrencia(idOcorrencia) {
+    if (confirm('Você tem certeza que deseja deletar esta ocorrência?')) {
+        fetch(`/api/ocorrencia/deletar/${idOcorrencia}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao deletar ocorrência. Status: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.message) {
+                alert(data.message);
+                location.reload();  // Recarregar a página para atualizar a lista de ocorrências
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao deletar ocorrência:', error);
+            alert('Erro ao deletar ocorrência. Por favor, tente novamente.');
+        });
+    }
+}
 

@@ -1431,3 +1431,14 @@ GO
 		ORDER BY idOcorrenciaHistoricoSituacao
 	END
 GO
+
+drop procedure if exists OCOTB.SP_deleteOcorrencia
+GO
+
+ALTER PROCEDURE [OCOTB].[SP_deleteOcorrencia] (
+    @idOcorrencia INT
+)
+AS
+BEGIN
+    DELETE FROM OCOTB.Ocorrencia WHERE idOcorrencia = @idOcorrencia;
+END

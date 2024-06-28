@@ -141,7 +141,9 @@
 			('Enviada para Responsável'),
 			('Indeferido'),
 			('Em Atendimento'),
-			('Finalizada')
+			('Finalizada'),
+			('Suspensa'),
+			('Desistencia')
 		GO
 
 		INSERT INTO OCOTB.Local(

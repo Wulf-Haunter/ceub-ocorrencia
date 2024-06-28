@@ -212,6 +212,18 @@ router.post('/salvarhistoricoocorrencia', autenticacaoMiddleware, async (req, re
     } 
 });
 
+router.delete('/deletar/:id', autenticacaoMiddleware, async (req, res) => {
+    const idOcorrencia = req.params.id;
+
+    try {
+        await querySoredProcedure("OCOTB.SP_deleteOcorrencia", { idOcorrencia });
+
+        res.status(200).json({ message: 'Ocorrência deletada com sucesso!' });
+    } catch (error) {
+        console.error('Erro ao deletar ocorrência:', error);
+        res.status(500).json({ message: 'Erro interno do servidor (ocorrenciaRoute/Deletar)' });
+    }
+});
 
 function ValidaCampoObrigatorio(req, ddlOcorrenciaTipo, ddlOcorrenciaSubTipo, deOcorrencia, hdnResponsavelFinanceiroList){
     

@@ -332,7 +332,9 @@
 		CONSTRAINT FK_OcorrenciaResponsavel_Pessoa FOREIGN KEY ([idPessoa])  REFERENCES OCOTB.Pessoa(idPessoa),
 		CONSTRAINT FK_OcorrenciaResponsavel_Perfil FOREIGN KEY ([idPerfil])  REFERENCES OCOTB.Perfil(idPerfil),
 		CONSTRAINT CK_OcorrenciaResponsave_Pessoa_Perfil CHECK (idPessoa IS NOT NULL OR idPerfil IS NOT NULL)
+		
 	);
+	
 	GO
 
 
@@ -340,7 +342,7 @@
 
 	USE OCODB;
 	GO
-	ALTER AUTHORIZATION ON DATABASE::OCODB TO isabelle;
+	ALTER AUTHORIZATION ON DATABASE::OCODB TO alejandro;
 	GO
 
 	select * from sys.dm_server_registry
